@@ -1,6 +1,4 @@
 from peewee import SqliteDatabase
 
-db_file = 'adreg.db'
-
-def create_db():
+def create_db(db_file='adreg.db'):
     return SqliteDatabase(db_file)
