@@ -4,11 +4,11 @@ from schema import SchemaError
 from datetime import date
 import src
 
-from src.services import add_ad
+from src.services.add import add_ad
 
 class TestAddAd:
     def test_passes_correct_values(self, mocker):
-        mocker.patch('src.services.add_reg')
+        mocker.patch('src.services.add.add_reg')
 
         add_ad(
             name='test name',
@@ -18,7 +18,7 @@ class TestAddAd:
             investment=500
         )
 
-        src.services.add_reg.assert_called_with(
+        src.services.add.add_reg.assert_called_with(
             name='test name',
             client='test client',
             start=date(2021, 4, 5),
