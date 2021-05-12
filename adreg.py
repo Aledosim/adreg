@@ -12,7 +12,13 @@ import argparse
 from src.validation import add_ad
 
 def add(args):
-    add_ad()
+    add_ad(
+        name=args.name[0],
+        client=args.client[0],
+        start=args.start[0],
+        end=args.end[0],
+        investment=args.investment
+    )
 
 def create_add_subparser(subparsers):
     add_parser = subparsers.add_parser(
@@ -26,12 +32,14 @@ def create_add_subparser(subparsers):
         '--name', '-n',
         type=str,
         required=True,
+        nargs=1,
         help='name of the advertisement',
     )
     add_parser.add_argument(
         '--client', '-c',
         type=str,
         required=True,
+        nargs=1,
         help='client name',
     )
     add_parser.add_argument(
@@ -46,12 +54,14 @@ def create_add_subparser(subparsers):
         '--end', '-e',
         type=str,
         required=True,
+        nargs=1,
         help='ending date of advertisement as DD-MM-YYYY',
     )
     add_parser.add_argument(
         '--investment', '-i',
         type=int,
         required=True,
+        nargs=1,
         help='investment per day in cents',
     )
 

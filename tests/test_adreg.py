@@ -39,8 +39,20 @@ class TestAdd:
 
     def test_add_function_passes_correct_arguments(self, mocker):
         mocker.patch('adreg.add_ad')
+
         args = mocker.MagicMock()
+        args.name = 'test name',
+        args.client = 'test client',
+        args.start = '5-4-2021',
+        args.end = '7-5-2021',
+        args.investment = 500
 
         add(args)
 
-        adreg.add_ad.assert_called_once()
+        adreg.add_ad.assert_called_with(
+            name='test name',
+            client='test client',
+            start='5-4-2021',
+            end='7-5-2021',
+            investment=500
+        )
