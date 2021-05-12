@@ -1,4 +1,5 @@
 from schema import Schema, Regex, And
+from datetime import datetime
 
 from src.business import add_reg
 
@@ -31,7 +32,7 @@ def add_ad(name=None, client=None, start=None, end=None, investment=None):
     add_reg(
         name=name,
         client=client,
-        start=start,
-        end=end,
+        start=datetime.strptime(start, '%d-%m-%Y').date(),
+        end=datetime.strptime(end, '%d-%m-%Y').date(),
         investment=investment
     )

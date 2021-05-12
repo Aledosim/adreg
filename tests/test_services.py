@@ -1,13 +1,12 @@
 import pytest
 
 from schema import SchemaError
+from datetime import date
 import src
 
 from src.services import add_ad
 
 class TestAddAd:
-    # TODO
-    # test add_ad success
     def test_passes_correct_values(self, mocker):
         mocker.patch('src.services.add_reg')
 
@@ -22,8 +21,8 @@ class TestAddAd:
         src.services.add_reg.assert_called_with(
             name='test name',
             client='test client',
-            start='5-4-2021',
-            end='7-5-2021',
+            start=date(2021, 4, 5),
+            end=date(2021, 5, 7),
             investment=500
         )
 
