@@ -13,7 +13,7 @@ def ad():
 
 class TestAdAdd:
     def test_passes_correct_values(self, mocker, ad):
-        mocker.patch('src.services.ad.add_reg')
+        mocker.patch('src.services.ad.AdReg')
 
         ad.add(
             name='test name',
@@ -23,7 +23,7 @@ class TestAdAdd:
             investment=500
         )
 
-        src.services.ad.add_reg.assert_called_with(
+        src.services.ad.AdReg().create_reg.assert_called_with(
             name='test name',
             client='test client',
             start=date(2021, 4, 5),

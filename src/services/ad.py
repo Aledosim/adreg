@@ -1,7 +1,7 @@
 from schema import Schema, Regex, And
 from datetime import datetime
 
-from src.business import add_reg
+from src.business import AdReg
 
 add_schema = Schema({
     'name': And(str, error='name must be str'),
@@ -33,7 +33,8 @@ class Ad:
             'investment': investment,
         })
 
-        add_reg(
+        adreg = AdReg()
+        adreg.create_reg(
             name=name,
             client=client,
             start=datetime.strptime(start, '%d-%m-%Y').date(),
