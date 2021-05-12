@@ -3,9 +3,7 @@ from dicttoobject import dict_to_readonly_object
 from schema import SchemaError
 from yaml import dump
 
-from .context import adreg
-
-from adreg.configs import get_configs
+from src.configs import get_configs
 
 
 class TestConfig:

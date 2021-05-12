@@ -1,10 +1,9 @@
 from pathlib import Path
 
 from pytest import fail
-from .context import adreg
 from .fixtures import mock_model
 
-from adreg.database import create_db
+from src.database import create_db
 
 
 class TestDatabase:
