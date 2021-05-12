@@ -3,7 +3,7 @@ from pathlib import Path
 from pytest import fail
 from .fixtures import mock_model
 
-from src.database import create_db
+from src.data import create_db
 
 
 class TestDatabase:
