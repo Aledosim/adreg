@@ -38,7 +38,7 @@ class TestAdd:
         assert '--investment' in arg_list
 
     def test_add_function_passes_correct_arguments(self, mocker):
-        mocker.patch('adreg.add_ad')
+        mocker.patch('adreg.Ad')
 
         args = mocker.MagicMock()
         args.name = 'test name',
@@ -49,7 +49,7 @@ class TestAdd:
 
         add(args)
 
-        adreg.add_ad.assert_called_with(
+        adreg.Ad().add.assert_called_with(
             name='test name',
             client='test client',
             start='5-4-2021',

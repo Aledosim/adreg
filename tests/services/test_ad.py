@@ -4,13 +4,18 @@ from schema import SchemaError
 from datetime import date
 import src
 
-from src.services.add import add_ad
+from src.services.ad import Ad
 
-class TestAddAd:
-    def test_passes_correct_values(self, mocker):
-        mocker.patch('src.services.add.add_reg')
+@pytest.fixture(autouse=True)
+def ad():
+    return Ad()
 
-        add_ad(
+
+class TestAdAdd:
+    def test_passes_correct_values(self, mocker, ad):
+        mocker.patch('src.services.ad.add_reg')
+
+        ad.add(
             name='test name',
             client='test client',
             start='5-4-2021',
@@ -18,7 +23,7 @@ class TestAddAd:
             investment=500
         )
 
-        src.services.add.add_reg.assert_called_with(
+        src.services.ad.add_reg.assert_called_with(
             name='test name',
             client='test client',
             start=date(2021, 4, 5),
@@ -26,9 +31,9 @@ class TestAddAd:
             investment=500
         )
 
-    def test_name_must_be_str(self):
+    def test_name_must_be_str(self, ad):
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name=31,
                 client='test client',
                 start='5-4-2021',
@@ -38,9 +43,9 @@ class TestAddAd:
 
         assert 'name must be str' in [err for err in exception.value.errors]
 
-    def test_client_is_str(self):
+    def test_client_is_str(self, ad):
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name='test name',
                 client=31,
                 start='5-4-2021',
@@ -50,9 +55,9 @@ class TestAddAd:
 
         assert 'client must be str' in [err for err in exception.value.errors]
 
-    def test_start_is_formated_str(self):
+    def test_start_is_formated_str(self, ad):
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name='test name',
                 client='test client',
                 start=31,
@@ -63,7 +68,7 @@ class TestAddAd:
         assert 'start date must be str' in [err for err in exception.value.errors]
 
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name='test name',
                 client='test client',
                 start='',
@@ -73,9 +78,9 @@ class TestAddAd:
 
         assert 'start date must be in the format dd-mm-yyyy' in [err for err in exception.value.errors]
 
-    def test_end_is_formated_str(self):
+    def test_end_is_formated_str(self, ad):
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name='test name',
                 client='test client',
                 start='5-4-2021',
@@ -87,7 +92,7 @@ class TestAddAd:
         assert 'end date must be str' in [err for err in exception.value.errors]
 
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name='test name',
                 client='test client',
                 start='5-4-2021',
@@ -97,9 +102,9 @@ class TestAddAd:
 
         assert 'end date must be in the format dd-mm-yyyy' in [err for err in exception.value.errors]
 
-    def test_investment_is_positive_int(self):
+    def test_investment_is_positive_int(self, ad):
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name='test name',
                 client='test client',
                 start='5-4-2021',
@@ -110,7 +115,7 @@ class TestAddAd:
         assert 'investment must be int' in [err for err in exception.value.errors]
 
         with pytest.raises(SchemaError) as exception:
-            add_ad(
+            ad.add(
                 name='test name',
                 client='test client',
                 start='5-4-2021',
@@ -120,6 +125,6 @@ class TestAddAd:
 
         assert 'investment must be positive' in [err for err in exception.value.errors]
 
-    def test_add_ad_without_args(self):
+    def test_add_without_args(self, ad):
         with pytest.raises(SchemaError):
-            add_ad()
+            ad.add()

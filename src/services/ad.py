@@ -20,19 +20,23 @@ add_schema = Schema({
     )
 })
 
-def add_ad(name=None, client=None, start=None, end=None, investment=None):
-    add_schema.validate({
-        'name': name,
-        'client': client,
-        'start': start,
-        'end': end,
-        'investment': investment,
-    })
 
-    add_reg(
-        name=name,
-        client=client,
-        start=datetime.strptime(start, '%d-%m-%Y').date(),
-        end=datetime.strptime(end, '%d-%m-%Y').date(),
-        investment=investment
-    )
+class Ad:
+
+    @staticmethod
+    def add(name=None, client=None, start=None, end=None, investment=None):
+        add_schema.validate({
+            'name': name,
+            'client': client,
+            'start': start,
+            'end': end,
+            'investment': investment,
+        })
+
+        add_reg(
+            name=name,
+            client=client,
+            start=datetime.strptime(start, '%d-%m-%Y').date(),
+            end=datetime.strptime(end, '%d-%m-%Y').date(),
+            investment=investment
+        )
