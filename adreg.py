@@ -9,7 +9,7 @@ import datetime
 log.debug('\nStarting script execution at {}'.format(datetime.datetime.now()))
 
 import argparse
-from src.validation import add_ad
+from src.services import add_ad
 
 def add(args):
     add_ad(

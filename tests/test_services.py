@@ -1,12 +1,31 @@
 import pytest
 
 from schema import SchemaError
+import src
 
-from src.validation import add_ad
+from src.services import add_ad
 
 class TestAddAd:
     # TODO
     # test add_ad success
+    def test_passes_correct_values(self, mocker):
+        mocker.patch('src.services.add_reg')
+
+        add_ad(
+            name='test name',
+            client='test client',
+            start='5-4-2021',
+            end='7-5-2021',
+            investment=500
+        )
+
+        src.services.add_reg.assert_called_with(
+            name='test name',
+            client='test client',
+            start='5-4-2021',
+            end='7-5-2021',
+            investment=500
+        )
 
     def test_name_must_be_str(self):
         with pytest.raises(SchemaError) as exception:

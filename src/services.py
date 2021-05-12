@@ -1,5 +1,7 @@
 from schema import Schema, Regex, And
 
+from src.business import add_reg
+
 add_schema = Schema({
     'name': And(str, error='name must be str'),
     'client': And(str, error='client must be str'),
@@ -25,3 +27,11 @@ def add_ad(name=None, client=None, start=None, end=None, investment=None):
         'end': end,
         'investment': investment,
     })
+
+    add_reg(
+        name=name,
+        client=client,
+        start=start,
+        end=end,
+        investment=investment
+    )
