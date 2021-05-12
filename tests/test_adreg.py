@@ -1,22 +1,46 @@
+import pytest
 import subprocess
 
+import adreg
+import argparse
+
+from adreg import main, add, create_add_subparser
+
+
+class TestMain:
+    def test_create_parsers(self, mocker):
+        mocker.patch('argparse.ArgumentParser')
+        mocker.patch('adreg.create_add_subparser')
+
+        main()
+
+        adreg.create_add_subparser.assert_called_once()
+
+        # TODO test if main call args.func
+
 class TestAdd:
+    def test_create_add_parser(self, mocker):
+        mock_parser = mocker.Mock()
+        mock_parser.add_parser = mocker.Mock(return_value=mock_parser)
 
-    def test_user_interface(self):
-        cmd = [
-            'python',
-            'adreg/presentation.py',
-            'add',
-            '--name', 'test name',
-            '--client', 'test client',
-            '--start', '2-3-2021',
-            '--end', '10-3-2021',
-            '--investment', '500'
-        ]
-        result = subprocess.run(cmd)
-        print(result.stdout)
-        print(result.stderr)
+        create_add_subparser(mock_parser)
 
-        assert result.returncode == 0
+        mock_parser.add_parser.assert_called_once()
+        assert 'add' in mock_parser.add_parser.call_args[0]
 
-        #TODO Test if the ad is correctly added to database
+        # Assert the first argument of all add_argument calls
+        arg_list = [call[0][0] for call in mock_parser.add_argument.call_args_list]
+        assert 5 == len(arg_list)
+        assert '--name' in arg_list
+        assert '--client' in arg_list
+        assert '--start' in arg_list
+        assert '--end' in arg_list
+        assert '--investment' in arg_list
+
+    def test_add_function_passes_correct_arguments(self, mocker):
+        mocker.patch('adreg.add_ad')
+        args = mocker.MagicMock()
+
+        add(args)
+
+        adreg.add_ad.assert_called_once()
