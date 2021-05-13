@@ -9,6 +9,8 @@ import datetime
 log.debug('\nStarting script execution at {}'.format(datetime.datetime.now()))
 
 import argparse
+import sys
+
 from src.services.ad import Ad
 
 def add(args):
@@ -67,13 +69,20 @@ def create_add_subparser(subparsers):
     )
 
 def main():
-    argument_parser = argparse.ArgumentParser()
+    argument_parser = argparse.ArgumentParser(
+        prog='adreg'
+    )
     subparsers = argument_parser.add_subparsers()
 
     create_add_subparser(subparsers)
 
     args = argument_parser.parse_args()
-    print(args.func)
+
+    # If no arguments are suplied, print the help and exit
+    if len(vars(args)) == 0:
+        argument_parser.print_help()
+        sys.exit()
+
     log.debug('args: {}'.format(args))
     args.func(args)
 
