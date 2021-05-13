@@ -1,26 +1,20 @@
-from pathlib import Path
-
-from pytest import fail
+import pytest
 from .fixtures import mock_model
+import src
 
-from src.data import create_db
+from src.data import Data
 
 
-class TestDatabase:
+class TestData:
 
-    def test_create_db_file_at_correct_place(self, tmp_path):
-        db_file = tmp_path.joinpath('adreg.db')
+    def test_init(self,mocker, tmp_path):
+        mocker.patch('src.data.SqliteDatabase')
 
-        db = create_db(db_file)
-        db.connect()
+        data = Data()
 
-        assert db_file.exists()
-        assert db_file.is_file()
+        # Create database object
+        src.data.SqliteDatabase.assert_called_with('adreg.db')
 
-    def test_create_tables(self, mock_model):
-        db = create_db(':memory:')
+        # Create tables
+        data.database.create_tables.assert_called_once_with(data.models)
 
-        db.bind([mock_model])
-        db.create_tables([mock_model])
-
-        assert mock_model.table_exists()

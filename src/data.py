@@ -1,4 +1,12 @@
 from peewee import SqliteDatabase
+from src.models.ad import Ad
 
-def create_db(db_file='adreg.db'):
-    return SqliteDatabase(db_file)
+
+class Data:
+    models = [
+        Ad,
+    ]
+
+    def __init__(self):
+        self.database = SqliteDatabase('adreg.db')
+        self.database.create_tables(self.models)
