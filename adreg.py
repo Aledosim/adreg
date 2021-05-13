@@ -14,10 +14,10 @@ from src.services.ad import Ad
 def add(args):
     ad = Ad()
     ad.add(
-        name=args.name[0],
-        client=args.client[0],
-        start=args.start[0],
-        end=args.end[0],
+        name=args.name,
+        client=args.client,
+        start=args.start,
+        end=args.end,
         investment=args.investment
     )
 
