@@ -1,5 +1,4 @@
 import pytest
-from .fixtures import mock_model
 import src
 
 from src.data import Data
