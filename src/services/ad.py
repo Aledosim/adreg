@@ -1,6 +1,7 @@
 from schema import Schema, Regex, And
 from datetime import datetime
 
+from src.dto.ad import AdDTO
 from src.business import AdReg
 
 add_schema = Schema({
@@ -33,11 +34,13 @@ class Ad:
             'investment': investment,
         })
 
-        adreg = AdReg()
-        adreg.create_reg(
+        ad_dto = AdDTO(
             name=name,
             client=client,
             start=datetime.strptime(start, '%d-%m-%Y').date(),
             end=datetime.strptime(end, '%d-%m-%Y').date(),
             investment=investment
         )
+
+        adreg = AdReg()
+        adreg.create_reg(ad_dto)

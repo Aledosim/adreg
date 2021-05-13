@@ -12,8 +12,9 @@ def ad():
 
 
 class TestAdAdd:
-    def test_passes_correct_values(self, mocker, ad):
+    def test_passes_correct_values(self, ad, mocker):
         mocker.patch('src.services.ad.AdReg')
+        mocker.patch('src.services.ad.AdDTO')
 
         ad.add(
             name='test name',
@@ -23,7 +24,8 @@ class TestAdAdd:
             investment=500
         )
 
-        src.services.ad.AdReg().create_reg.assert_called_with(
+        ad_dto = src.services.ad.AdDTO
+        ad_dto.assert_called_once_with(
             name='test name',
             client='test client',
             start=date(2021, 4, 5),
@@ -31,7 +33,10 @@ class TestAdAdd:
             investment=500
         )
 
-    def test_name_must_be_str(self, ad):
+        adreg = src.services.ad.AdReg()
+        adreg.create_reg.assert_called_once_with(ad_dto())
+
+    def test_name_is_str(self, ad):
         with pytest.raises(SchemaError) as exception:
             ad.add(
                 name=31,
