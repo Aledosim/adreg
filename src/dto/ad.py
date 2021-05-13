@@ -1,5 +1,5 @@
 
-class Ad:
+class AdDTO:
     def __init__(self, name=None, client=None, start=None, end=None, investment=None):
         self.name = name
         self.client = client
@@ -9,7 +9,7 @@ class Ad:
 
     @staticmethod
     def from_model(model):
-        ad = Ad(
+        ad = AdDTO(
             name=model.name,
             client=model.client,
             start=model.start,

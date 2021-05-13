@@ -1,6 +1,6 @@
 from datetime import date
 
-from src.dto.ad import Ad
+from src.dto.ad import AdDTO
 
 
 class TestAd:
@@ -11,7 +11,7 @@ class TestAd:
         end = date(2021, 5, 7)
         investment = 500
 
-        ad_dto = Ad(
+        ad_dto = AdDTO(
             name=name,
             client=client,
             start=start,
@@ -39,9 +39,9 @@ class TestAd:
         model.end = end
         model.investment = investment
 
-        ad_dto = Ad.from_model(model)
+        ad_dto = AdDTO.from_model(model)
 
-        assert isinstance(ad_dto, Ad)
+        assert isinstance(ad_dto, AdDTO)
         assert name == ad_dto.name
         assert client == ad_dto.client
         assert start ==  ad_dto.start
