@@ -1,0 +1,3 @@
+
+class AdEntryDTO:
+    pass
