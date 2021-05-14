@@ -43,4 +43,4 @@ class Ad:
         )
 
         adreg = AdReg()
-        adreg.create_reg(ad_dto)
+        adreg.create_adreg(ad_dto)

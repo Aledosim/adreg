@@ -34,7 +34,7 @@ class TestAdAdd:
         )
 
         adreg = src.services.ad.AdReg()
-        adreg.create_reg.assert_called_once_with(ad_dto())
+        adreg.create_adreg.assert_called_once_with(ad_dto())
 
     def test_name_is_str(self, ad):
         with pytest.raises(SchemaError) as exception:
