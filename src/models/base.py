@@ -1,8 +1,13 @@
 from peewee import DateTimeField, AutoField, Model, SqliteDatabase
 from datetime import datetime
+import os
 
 def get_database():
-    return SqliteDatabase(None)
+    test_db = os.getenv('ADREG_TEST_DB')
+    if test_db:
+        return SqliteDatabase(test_db)
+
+    return SqliteDatabase('adreg.db')
 
 
 class BaseModel(Model):

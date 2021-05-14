@@ -21,5 +21,5 @@ class TestAdReg:
         adreg = AdReg()
         result = adreg.create_adreg(ad_dto)
 
-        adreg.data.get_or_create_entry.assert_called_once_with(ad_dto)
-        assert adreg.data.get_or_create_entry() == result
+        adreg.data.get_or_create_ad.assert_called_once_with(ad_dto)
+        assert adreg.data.get_or_create_ad() == result
