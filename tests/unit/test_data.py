@@ -2,7 +2,6 @@ import pytest
 from peewee import SqliteDatabase
 
 import src
-from .fixtures.ad_dto import ad_dto
 
 from src.data import Data
 

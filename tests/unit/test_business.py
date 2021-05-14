@@ -1,7 +1,6 @@
 import pytest
 
 import src
-from .fixtures.ad_dto import ad_dto
 
 from src.business import AdReg
 

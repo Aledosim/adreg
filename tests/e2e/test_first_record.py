@@ -1,8 +1,10 @@
 import subprocess
-from tests.fixtures.test_db import test_db, models
 import pytest
+from src.data import Data
 
-def test_first_record(mocker, test_db, models):
+def test_first_record(mocker, get_models):
+    models = get_models(Data.models)
+
     # Eli is a happy employee of Divulga Tudo
     # He wants to use the brand new system of advertisement registry
 
