@@ -20,6 +20,12 @@ class Data:
 
     @database.connection_context()
     def get_or_create_ad(self, ad_dto):
-        ad, is_created = Ad.get_or_create(ad_dto)
+        ad, is_created = Ad.get_or_create(
+            name=ad_dto.name,
+            client=ad_dto.client,
+            start=ad_dto.start,
+            end=ad_dto.end,
+            investment=ad_dto.investment
+        )
         ad_entry = AdEntryDTO.from_model(ad)
         return ad_entry

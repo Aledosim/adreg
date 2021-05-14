@@ -29,18 +29,22 @@ class TestData:
 
     def test_get_or_create_ad(self, mocker, ad_dto):
         mocker.patch('src.data.Data.database')
+        mocker.patch('src.data.Data.create_tables')
+        ad_entry_class =  mocker.patch('src.data.AdEntryDTO')
 
-        mocker.patch('src.data.Ad')
-        ad_class = src.data.Ad
+        ad_class = mocker.patch('src.data.Ad')
         ad = mocker.Mock()
         ad_class.get_or_create.return_value = ad, mocker.Mock()
-
-        mocker.patch('src.data.AdEntryDTO')
-        ad_entry_class = src.data.AdEntryDTO
 
         data = Data()
         result = data.get_or_create_ad.__wrapped__(data, ad_dto)
 
-        ad_class.get_or_create.assert_called_once_with(ad_dto)
+        ad_class.get_or_create.assert_called_once_with(
+            name=ad_dto.name,
+            client=ad_dto.client,
+            start=ad_dto.start,
+            end=ad_dto.end,
+            investment=ad_dto.investment
+        )
         ad_entry_class.from_model.assert_called_once_with(ad)
         assert ad_entry_class.from_model() == result
