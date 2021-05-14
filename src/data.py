@@ -12,7 +12,10 @@ class Data:
     database = get_database()
 
     def __init__(self):
-        self.database.init('adreg.db')
+        self.create_tables()
+
+    @database.connection_context()
+    def create_tables(self):
         self.database.create_tables(self.models)
 
     @database.connection_context()

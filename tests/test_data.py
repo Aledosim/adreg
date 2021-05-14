@@ -14,12 +14,18 @@ class TestData:
 
     def test_init(self, mocker):
         mocker.patch('src.data.Data.database')
+        mock_create_tables = mocker.patch('src.data.Data.create_tables')
+
+        Data()
+
+        mock_create_tables.assert_called_once_with()
+
+    def test_create_tables(self, mocker):
+        mock_db = mocker.patch('src.data.Data.database')
 
         data = Data()
-        print(data.database)
 
-        data.database.init.assert_called_once_with('adreg.db')
-        data.database.create_tables.assert_called_once_with(data.models)
+        mock_db.create_tables.assert_called_once_with(data.models)
 
     def test_get_or_create_ad(self, mocker, ad_dto):
         mocker.patch('src.data.Data.database')
