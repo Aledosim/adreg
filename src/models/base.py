@@ -3,9 +3,8 @@ from datetime import datetime
 import os
 
 def get_database():
-    test_db = os.getenv('ADREG_TEST_DB')
-    if test_db:
-        return SqliteDatabase(test_db)
+    if 'ADREG_TEST_DB' in os.environ:
+        return SqliteDatabase(os.getenv('ADREG_TEST_DB'))
 
     return SqliteDatabase('adreg.db')
 
