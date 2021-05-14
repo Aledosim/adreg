@@ -1,5 +1,8 @@
-from peewee import DateTimeField, AutoField, Model
+from peewee import DateTimeField, AutoField, Model, SqliteDatabase
 from datetime import datetime
+
+def get_database():
+    return SqliteDatabase(None)
 
 
 class BaseModel(Model):
@@ -8,4 +11,4 @@ class BaseModel(Model):
     id = AutoField(unique=True, primary_key=True)
 
     class Meta:
-        pass
+        database = get_database()

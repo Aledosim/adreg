@@ -1,5 +1,6 @@
 from peewee import SqliteDatabase
 
+from src.models.base import get_database
 from src.models.ad import Ad
 from src.dto.ad_entry import AdEntryDTO
 
@@ -8,7 +9,7 @@ class Data:
     models = [
         Ad,
     ]
-    database = SqliteDatabase(None)
+    database = get_database()
 
     def __init__(self):
         self.database.init('adreg.db')
