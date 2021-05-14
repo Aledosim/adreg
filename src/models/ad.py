@@ -1,14 +1,12 @@
-from peewee import Model, CharField, DateField, IntegerField, DateTimeField, AutoField
+from peewee import CharField, DateField, IntegerField
 from datetime import datetime
 
+from src.models.base import BaseModel
 
-class Ad(Model):
+
+class Ad(BaseModel):
     name = CharField()
     client = CharField()
     start = DateField()
     end = DateField()
     investment = IntegerField()
-    created_at = DateTimeField(default=datetime.now())
-    updated_at = DateTimeField(default=datetime.now())
-    id = AutoField(unique=True, primary_key=True)
-
