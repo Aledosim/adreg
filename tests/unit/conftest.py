@@ -1,6 +1,5 @@
 import pytest
 
-
 @pytest.fixture
 def ad_dto(mocker):
     ad_dto = mocker.Mock()

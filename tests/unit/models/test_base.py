@@ -18,6 +18,7 @@ class TestBaseModel:
 
     def test_get_database_without_test_env(self, mocker):
         mock_db = mocker.patch('src.models.base.SqliteDatabase')
+        del os.environ['ADREG_TEST_DB']
 
         get_database()
 
