@@ -17,9 +17,10 @@ class TestData:
 
         Data()
 
-        mock_create_tables.assert_called_once_with()
+        mock_create_tables.assert_called_once()
 
-    def test_create_tables(self, mocker):
+    def test_create_tables(self, mocker, monkeypatch):
+        monkeypatch.setattr(Data, 'create_tables', Data.create_tables.__wrapped__)
         mock_db = mocker.patch('src.data.Data.database')
 
         data = Data()
