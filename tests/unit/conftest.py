@@ -22,3 +22,12 @@ def report_input_dto(mocker):
     report_input_dto.end = date(2021, 5, 7)
 
     return report_input_dto
+
+@pytest.fixture
+def report_dto(report_input_dto):
+    report_dto = report_input_dto
+    report_dto.total = 16000
+    report_dto.max_views = 500
+    report_dto.max_clicks = 30
+
+    return report_dto
