@@ -20,6 +20,7 @@ jobs:
                     pytest-mock
                     PyYAML
                     schema
+                    dict-to-object
                     
             - name: Coverage Badge
               run: |
