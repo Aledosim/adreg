@@ -76,7 +76,8 @@ class TestCreateReportSubparser:
 
         # Assert the first argument of all add_argument calls
         arg_list = [call[0][0] for call in mock_parser.add_argument.call_args_list]
-        assert 3 == len(arg_list)
+        assert 4 == len(arg_list)
+        assert '--name' in arg_list
         assert '--client' in arg_list
         assert '--start' in arg_list
         assert '--end' in arg_list
