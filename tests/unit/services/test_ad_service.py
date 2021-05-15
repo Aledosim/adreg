@@ -10,7 +10,7 @@ from src.services.adservice import AdService
 class TestAdAdd:
     def test_passes_correct_values(self, ad_input, mocker):
         mocker.patch('src.services.adservice.AdReg')
-        mocker.patch('src.services.adservice.AdInputDTO')
+        ad_input_dto = mocker.patch('src.services.adservice.AdInputDTO')
 
         service = AdService()
         service.add(
@@ -21,8 +21,7 @@ class TestAdAdd:
             investment=ad_input.investment,
         )
 
-        ad_dto = src.services.adservice.AdInputDTO
-        ad_dto.assert_called_once_with(
+        ad_input_dto.assert_called_once_with(
             name=ad_input.name,
             client=ad_input.client,
             start=date(2021, 4, 5),
@@ -31,7 +30,7 @@ class TestAdAdd:
         )
 
         adreg = src.services.adservice.AdReg()
-        adreg.create_adreg.assert_called_once_with(ad_dto())
+        adreg.create_adentry.assert_called_once_with(ad_input_dto())
 
     def test_name_is_str(self, ad_input):
         service = AdService()
@@ -141,3 +140,24 @@ class TestAdAdd:
         service = AdService()
         with pytest.raises(SchemaError):
             service.add()
+
+
+class TestReport:
+    def test_passes_correct_values(self, report_input, mocker):
+        adreg_mock = mocker.patch('src.services.adservice.AdReg')
+        report_input_dto = mocker.patch('src.services.adservice.ReportInputDTO')
+
+        service = AdService()
+        service.report(
+            client=report_input.client,
+            start='5-4-2021',
+            end='7-5-2021',
+        )
+
+        report_input_dto.assert_called_once_with(
+            client=report_input.client,
+            start=date(2021, 4, 5),
+            end=date(2021, 5, 7),
+        )
+
+        adreg_mock().create_report.assert_called_once_with(report_input_dto())

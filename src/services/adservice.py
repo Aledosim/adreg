@@ -2,6 +2,7 @@ from schema import Schema, Regex, And
 from datetime import datetime
 
 from src.dto.ad_input import AdInputDTO
+from src.dto.report_input import ReportInputDTO
 from src.business import AdReg
 
 add_schema = Schema({
@@ -23,9 +24,10 @@ add_schema = Schema({
 
 
 class AdService:
+    def __init__(self):
+        self.adreg = AdReg()
 
-    @staticmethod
-    def add(name=None, client=None, start=None, end=None, investment=None):
+    def add(self, name=None, client=None, start=None, end=None, investment=None):
         add_schema.validate({
             'name': name,
             'client': client,
@@ -34,7 +36,7 @@ class AdService:
             'investment': investment,
         })
 
-        ad_dto = AdInputDTO(
+        ad_input_dto = AdInputDTO(
             name=name,
             client=client,
             start=datetime.strptime(start, '%d-%m-%Y').date(),
@@ -42,5 +44,14 @@ class AdService:
             investment=investment
         )
 
-        adreg = AdReg()
-        adreg.create_adreg(ad_dto)
+        self.adreg.create_adentry(ad_input_dto)
+
+
+    def report(self, client= None, start=None, end=None):
+        report_input_dto = ReportInputDTO(
+            client=client,
+            start=datetime.strptime(start, '%d-%m-%Y').date(),
+            end=datetime.strptime(end, '%d-%m-%Y').date(),
+        )
+
+        self.adreg.create_report(report_input_dto)
