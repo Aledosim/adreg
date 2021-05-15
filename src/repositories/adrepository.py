@@ -6,17 +6,8 @@ from src.dto.ad_entry import AdEntryDTO
 
 
 class Data:
-    models = [
-        Ad,
-    ]
+
     database = database
-
-    def __init__(self):
-        self.create_tables()
-
-    @database.connection_context()
-    def create_tables(self):
-        self.database.create_tables(self.models)
 
     @database.connection_context()
     def get_or_create_ad(self, ad_dto):

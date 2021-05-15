@@ -11,22 +11,6 @@ class TestData:
     def test_class_att_database(self):
         assert isinstance(src.data.Data.database, SqliteDatabase)
 
-    def test_init(self, mocker):
-        mocker.patch('src.data.Data.database')
-        mock_create_tables = mocker.patch('src.data.Data.create_tables')
-
-        Data()
-
-        mock_create_tables.assert_called_once()
-
-    def test_create_tables(self, mocker, monkeypatch):
-        monkeypatch.setattr(Data, 'create_tables', Data.create_tables.__wrapped__)
-        mock_db = mocker.patch('src.data.Data.database')
-
-        data = Data()
-
-        mock_db.create_tables.assert_called_once_with(data.models)
-
     def test_get_or_create_ad(self, mocker, ad_input_dto):
         mocker.patch('src.data.Data.database')
         mocker.patch('src.data.Data.create_tables')

@@ -1,9 +1,9 @@
 import subprocess
 import pytest
-from src.data import Data
+from src.database import models as db_models
 
 def test_first_record(mocker, get_models):
-    models = get_models(Data.models)
+    models = get_models(db_models)
 
     # Eli is a happy employee of Divulga Tudo
     # He wants to use the brand new system of advertisement registry
