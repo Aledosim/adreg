@@ -12,6 +12,7 @@ import argparse
 import sys
 
 from src.services.adservice import AdService
+from src.services.reportservice import ReportService
 
 def add(args):
     service = AdService()
@@ -20,11 +21,16 @@ def add(args):
         client=args.client,
         start=args.start,
         end=args.end,
-        investment=args.investment
+        investment=args.investment,
     )
 
 def report(args):
-    pass
+    service = ReportService()
+    service.report(
+        client=args.client,
+        start=args.start,
+        end=args.end,
+    )
 
 def create_add_subparser(subparsers):
     add_parser = subparsers.add_parser(
