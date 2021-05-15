@@ -38,7 +38,7 @@ class TestAdd:
         assert '--investment' in arg_list
 
     def test_add_function_passes_correct_arguments(self, mocker):
-        mocker.patch('adreg.Ad')
+        mocker.patch('adreg.AdService')
 
         name = 'test name'
         client = 'test client'
@@ -55,7 +55,7 @@ class TestAdd:
 
         add(args)
 
-        adreg.Ad().add.assert_called_with(
+        adreg.AdService().add.assert_called_with(
             name=name,
             client=client,
             start=start,

@@ -4,17 +4,18 @@ from schema import SchemaError
 from datetime import date
 import src
 
-from src.services.ad import Ad
+from src.services.adservice import AdService
+
 
 @pytest.fixture(autouse=True)
 def ad():
-    return Ad()
+    return AdService()
 
 
 class TestAdAdd:
     def test_passes_correct_values(self, ad, mocker):
-        mocker.patch('src.services.ad.AdReg')
-        mocker.patch('src.services.ad.AdInputDTO')
+        mocker.patch('src.services.adservice.AdReg')
+        mocker.patch('src.services.adservice.AdInputDTO')
 
         ad.add(
             name='test name',
@@ -24,7 +25,7 @@ class TestAdAdd:
             investment=500
         )
 
-        ad_dto = src.services.ad.AdInputDTO
+        ad_dto = src.services.adservice.AdInputDTO
         ad_dto.assert_called_once_with(
             name='test name',
             client='test client',
@@ -33,7 +34,7 @@ class TestAdAdd:
             investment=500
         )
 
-        adreg = src.services.ad.AdReg()
+        adreg = src.services.adservice.AdReg()
         adreg.create_adreg.assert_called_once_with(ad_dto())
 
     def test_name_is_str(self, ad):

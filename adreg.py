@@ -11,10 +11,10 @@ log.debug('\nStarting script execution at {}'.format(datetime.datetime.now()))
 import argparse
 import sys
 
-from src.services.ad import Ad
+from src.services.adservice import AdService
 
 def add(args):
-    ad = Ad()
+    ad = AdService()
     ad.add(
         name=args.name,
         client=args.client,

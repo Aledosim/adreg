@@ -17,12 +17,12 @@ add_schema = Schema({
     ),
     'investment': And(
         And(int, error='investment must be int'),
-        And(lambda n: n >0, error='investment must be positive'),
+        And(lambda n: n > 0, error='investment must be positive'),
     )
 })
 
 
-class Ad:
+class AdService:
 
     @staticmethod
     def add(name=None, client=None, start=None, end=None, investment=None):
