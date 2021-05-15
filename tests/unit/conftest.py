@@ -1,3 +1,4 @@
+from datetime import date
 import pytest
 
 @pytest.fixture
@@ -11,3 +12,13 @@ def ad_dto(mocker):
     ad_dto.investment=500
 
     return ad_dto
+
+@pytest.fixture
+def report_input_dto(mocker):
+    report_input_dto = mocker.Mock()
+
+    report_input_dto.client = 'test client'
+    report_input_dto.start = date(2021, 4, 5)
+    report_input_dto.end = date(2021, 5, 7)
+
+    return report_input_dto
