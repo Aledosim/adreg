@@ -40,6 +40,7 @@ def create_add_subparser(subparsers):
         description='add description',
         help='add advertisement register',
     )
+
     add_parser.set_defaults(func=add)
 
     add_parser.add_argument(
@@ -82,6 +83,7 @@ def create_report_subparser(subparsers):
         description='add description',
         help='make a report filtered by client and/or days interval',
     )
+
     report_parser.set_defaults(func=report)
 
     report_parser.add_argument(
@@ -90,14 +92,14 @@ def create_report_subparser(subparsers):
         help='name of the advertisement',
     )
     report_parser.add_argument(
-        '--start', '-s',
-        type=str,
-        help='start date of report',
-    )
-    report_parser.add_argument(
         '--client', '-c',
         type=str,
         help='name of the client',
+    )
+    report_parser.add_argument(
+        '--start', '-s',
+        type=str,
+        help='start date of report',
     )
     report_parser.add_argument(
         '--end', '-e',
