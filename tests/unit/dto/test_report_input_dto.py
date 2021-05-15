@@ -12,5 +12,5 @@ class TestReportInputDTO:
 
         assert report_input_dto_obj.client == report_input_dto.client
         assert report_input_dto_obj.start == report_input_dto.start
-        assert report_input_dto_obj.end == report_input_dto_obj.end
+        assert report_input_dto_obj.end == report_input_dto.end
 
