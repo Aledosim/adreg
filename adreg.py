@@ -12,7 +12,7 @@ import argparse
 import sys
 
 from src.services.adservice import AdService
-from src.services.reportservice import ReportService
+
 
 def add(args):
     service = AdService()
@@ -24,13 +24,15 @@ def add(args):
         investment=args.investment,
     )
 
+
 def report(args):
-    service = ReportService()
+    service = AdService()
     service.report(
         client=args.client,
         start=args.start,
         end=args.end,
     )
+
 
 def create_add_subparser(subparsers):
     add_parser = subparsers.add_parser(
@@ -73,6 +75,7 @@ def create_add_subparser(subparsers):
         help='investment per day in cents',
     )
 
+
 def create_report_subparser(subparsers):
     report_parser = subparsers.add_parser(
         'report',
@@ -103,6 +106,7 @@ def create_report_subparser(subparsers):
         default=datetime.date.today().strftime('%d-%m-%Y'),
     )
 
+
 def main():
     argument_parser = argparse.ArgumentParser(
         prog='adreg'
@@ -121,6 +125,7 @@ def main():
 
     log.debug('args: {}'.format(args))
     args.func(args)
+
 
 if __name__ == '__main__':
     main()

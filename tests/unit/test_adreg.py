@@ -101,7 +101,7 @@ class TestAdd:
 
 class TestReport:
     def test_report_function_passes_correct_arguments(self, report_input, mocker):
-        service = mocker.patch('adreg.ReportService')
+        service = mocker.patch('adreg.AdService')
         args = report_input
 
         report(args)
