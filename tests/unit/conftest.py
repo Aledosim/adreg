@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 import pytest
 
 @pytest.fixture
@@ -14,10 +14,34 @@ def ad_input(mocker):
     return ad_dto
 
 @pytest.fixture
-def report_input_dto(mocker):
-    report_input_dto = mocker.Mock()
+def ad_input_dto(ad_input):
+    ad_input_dto = ad_input
+    ad_input_dto.start = date(2021, 4, 5)
+    ad_input_dto.end = date(2021, 5, 7)
 
-    report_input_dto.client = 'test client'
+    return ad_input_dto
+
+@pytest.fixture
+def ad_dto(ad_input_dto):
+    ad_dto = ad_input_dto
+    ad_dto.created_at = datetime.now()
+    ad_dto.updated_at = datetime.now()
+
+    return ad_dto
+
+@pytest.fixture
+def report_input(mocker):
+    report_input = mocker.Mock()
+
+    report_input.client = 'test client'
+    report_input.start = '5-4-2021'
+    report_input.end = '7-5-2021'
+
+    return report_input
+
+@pytest.fixture
+def report_input_dto(report_input):
+    report_input_dto = report_input
     report_input_dto.start = date(2021, 4, 5)
     report_input_dto.end = date(2021, 5, 7)
 
