@@ -14,7 +14,7 @@ def ad():
 class TestAdAdd:
     def test_passes_correct_values(self, ad, mocker):
         mocker.patch('src.services.ad.AdReg')
-        mocker.patch('src.services.ad.AdDTO')
+        mocker.patch('src.services.ad.AdInputDTO')
 
         ad.add(
             name='test name',
@@ -24,7 +24,7 @@ class TestAdAdd:
             investment=500
         )
 
-        ad_dto = src.services.ad.AdDTO
+        ad_dto = src.services.ad.AdInputDTO
         ad_dto.assert_called_once_with(
             name='test name',
             client='test client',

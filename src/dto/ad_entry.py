@@ -1,6 +1,6 @@
-from src.dto.ad import AdDTO
+from src.dto.ad_input import AdInputDTO
 
-class AdEntryDTO(AdDTO):
+class AdEntryDTO(AdInputDTO):
     def __init__(self, created_at=None, updated_at=None, id=None, **kwargs):
         super().__init__(**kwargs)
         self.created_at = created_at
