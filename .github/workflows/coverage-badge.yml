@@ -19,6 +19,7 @@ jobs:
                     pytest
                     pytest-mock
                     PyYAML
+                    schema
                     
             - name: Coverage Badge
               run: |
