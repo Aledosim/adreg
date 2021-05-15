@@ -1,11 +1,10 @@
 import pytest
-import subprocess
 import argparse
 import sys
 
 import adreg
 
-from adreg import main, add, create_add_subparser, create_report_subparser
+from adreg import main, add, report, create_add_subparser, create_report_subparser
 
 
 class TestMain:
@@ -29,7 +28,6 @@ class TestMain:
 
         arg_parser.print_help.assert_called_once()
         sys.exit.assert_called_once()
-
 
     def test_call_func_of_argument(self, mocker):
         mocker.patch('argparse.ArgumentParser')
@@ -64,7 +62,6 @@ class TestCreateAddSubparser:
 
 
 class TestCreateReportSubparser:
-
     def test_create_report_parser(self, mocker):
         report = mocker.patch('adreg.report')
         mock_parser = mocker.Mock()
@@ -86,28 +83,32 @@ class TestCreateReportSubparser:
 
 
 class TestAdd:
-    def test_add_function_passes_correct_arguments(self, mocker):
-        mocker.patch('adreg.AdService')
-
-        name = 'test name'
-        client = 'test client'
-        start = '5-4-2021'
-        end = '7-5-2021'
-        investment = 500
-
-        args = mocker.MagicMock()
-        args.name = name
-        args.client = client
-        args.start = start
-        args.end = end
-        args.investment = investment
+    def test_add_function_passes_correct_arguments(self, ad_input, mocker):
+        service = mocker.patch('adreg.AdService')
+        args = ad_input
 
         add(args)
 
-        adreg.AdService().add.assert_called_with(
-            name=name,
-            client=client,
-            start=start,
-            end=end,
-            investment=investment
+        service.assert_called_once()
+        service().add.assert_called_with(
+            name=args.name,
+            client=args.client,
+            start=args.start,
+            end=args.end,
+            investment=args.investment,
+        )
+
+
+class TestReport:
+    def test_report_function_passes_correct_arguments(self, report_input, mocker):
+        service = mocker.patch('adreg.ReportService')
+        args = report_input
+
+        report(args)
+
+        service.assert_called_once()
+        service().report.assert_called_with(
+            client=args.client,
+            start=args.start,
+            end=args.end,
         )
