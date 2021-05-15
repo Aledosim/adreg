@@ -22,7 +22,7 @@ def ad_input_dto(ad_input):
     return ad_input_dto
 
 @pytest.fixture
-def ad_dto(ad_input_dto):
+def ad_entry_dto(ad_input_dto):
     ad_dto = ad_input_dto
     ad_dto.created_at = datetime.now()
     ad_dto.updated_at = datetime.now()
