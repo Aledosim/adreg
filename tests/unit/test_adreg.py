@@ -1,8 +1,9 @@
 import pytest
 import subprocess
+import argparse
+import sys
 
 import adreg
-import argparse
 
 from adreg import main, add, create_add_subparser
 
@@ -16,7 +17,17 @@ class TestMain:
 
         adreg.create_add_subparser.assert_called_once()
 
-        # TODO test if main call args.func
+    def test_print_help_and_exit_when_no_args(self, mocker):
+        mocker.patch('sys.exit')
+        mocker.patch('adreg.vars').return_value = {}
+        mocker.patch('argparse.ArgumentParser')
+        arg_parser = argparse.ArgumentParser()
+
+        main()
+
+        arg_parser.print_help.assert_called_once()
+        sys.exit.assert_called_once()
+
 
 class TestAdd:
     def test_create_add_parser(self, mocker):
