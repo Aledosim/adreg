@@ -18,3 +18,11 @@ class AdRepository:
         )
         ad_entry = AdEntryDTO.from_model(ad)
         return ad_entry
+
+    @database.connection_context()
+    def find_all_ads(self):
+        ads = Ad.select()
+
+        ad_entries = [AdEntryDTO.from_model(ad) for ad in ads]
+
+        return ad_entries
