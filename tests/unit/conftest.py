@@ -2,7 +2,7 @@ from datetime import date
 import pytest
 
 @pytest.fixture
-def ad_dto(mocker):
+def ad_input_dto(mocker):
     ad_dto = mocker.Mock()
 
     ad_dto.name='test name',
