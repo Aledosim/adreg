@@ -29,6 +29,15 @@ class TestMain:
         sys.exit.assert_called_once()
 
 
+    def test_call_func_of_argument(self, mocker):
+        mocker.patch('argparse.ArgumentParser')
+        args = argparse.ArgumentParser().parse_args()
+
+        main()
+
+        args.func.assert_called_once_with(args)
+
+
 class TestAdd:
     def test_create_add_parser(self, mocker):
         mock_parser = mocker.Mock()
