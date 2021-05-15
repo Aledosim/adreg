@@ -8,3 +8,6 @@ class AdReg:
     def create_adentry(self, ad_dto):
         ad_entry = self.data.get_or_create_ad(ad_dto)
         return ad_entry
+
+    def create_report(self, report_dto):
+        pass
