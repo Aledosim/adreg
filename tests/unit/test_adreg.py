@@ -42,6 +42,7 @@ class TestMain:
 
 class TestCreateAddSubparser:
     def test_create_add_subparser(self, mocker):
+        add = mocker.patch('adreg.add')
         mock_parser = mocker.Mock()
         mock_parser.add_parser = mocker.Mock(return_value=mock_parser)
 
@@ -49,6 +50,8 @@ class TestCreateAddSubparser:
 
         mock_parser.add_parser.assert_called_once()
         assert 'add' in mock_parser.add_parser.call_args[0]
+
+        mock_parser.add_parser().set_defaults.assert_called_once_with(func=add)
 
         # Assert the first argument of all add_argument calls
         arg_list = [call[0][0] for call in mock_parser.add_argument.call_args_list]
@@ -63,6 +66,7 @@ class TestCreateAddSubparser:
 class TestCreateReportSubparser:
 
     def test_create_report_parser(self, mocker):
+        report = mocker.patch('adreg.report')
         mock_parser = mocker.Mock()
         mock_parser.add_parser = mocker.Mock(return_value=mock_parser)
 
@@ -70,6 +74,8 @@ class TestCreateReportSubparser:
 
         mock_parser.add_parser.assert_called_once()
         assert 'report' in mock_parser.add_parser.call_args[0]
+
+        mock_parser.add_parser().set_defaults.assert_called_once_with(func=report)
 
         # Assert the first argument of all add_argument calls
         arg_list = [call[0][0] for call in mock_parser.add_argument.call_args_list]

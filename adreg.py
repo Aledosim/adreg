@@ -23,6 +23,9 @@ def add(args):
         investment=args.investment
     )
 
+def report(args):
+    pass
+
 def create_add_subparser(subparsers):
     add_parser = subparsers.add_parser(
         'add',
@@ -70,7 +73,7 @@ def create_report_subparser(subparsers):
         description='add description',
         help='make a report filtered by client and/or days interval',
     )
-    report_parser.set_defaults(func=add)
+    report_parser.set_defaults(func=report)
 
     report_parser.add_argument(
         '--start', '-s',
