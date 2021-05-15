@@ -5,17 +5,19 @@ import sys
 
 import adreg
 
-from adreg import main, add, create_add_subparser
+from adreg import main, add, create_add_subparser, create_report_subparser
 
 
 class TestMain:
     def test_create_parsers(self, mocker):
         mocker.patch('argparse.ArgumentParser')
         mocker.patch('adreg.create_add_subparser')
+        mocker.patch('adreg.create_report_subparser')
 
         main()
 
         adreg.create_add_subparser.assert_called_once()
+        adreg.create_report_subparser.assert_called_once()
 
     def test_print_help_and_exit_when_no_args(self, mocker):
         mocker.patch('sys.exit')

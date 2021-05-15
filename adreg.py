@@ -64,6 +64,36 @@ def create_add_subparser(subparsers):
         help='investment per day in cents',
     )
 
+def create_report_subparser(subparsers):
+    report_parser = subparsers.add_parser(
+        'report',
+        description='add description',
+        help='make a report filtered by client and/or days interval',
+    )
+    report_parser.set_defaults(func=add)
+
+    report_parser.add_argument(
+        '--start', '-s',
+        type=str,
+        help='start date of report',
+        required=True,
+    )
+
+    report_parser.add_argument(
+        '--client', '-c',
+        type=str,
+        help='name of the client',
+    )
+
+    report_parser.add_argument(
+        '--end', '-e',
+        type=str,
+        help='end date of report. Default is the current day',
+        nargs='?',
+        const=datetime.date.today().strftime('%d-%m-%Y'),
+        default=datetime.date.today().strftime('%d-%m-%Y'),
+    )
+
 def main():
     argument_parser = argparse.ArgumentParser(
         prog='adreg'
@@ -71,6 +101,7 @@ def main():
     subparsers = argument_parser.add_subparsers()
 
     create_add_subparser(subparsers)
+    create_report_subparser(subparsers)
 
     args = argument_parser.parse_args()
 
