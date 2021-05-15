@@ -14,8 +14,8 @@ import sys
 from src.services.adservice import AdService
 
 def add(args):
-    ad = AdService()
-    ad.add(
+    service = AdService()
+    service.add(
         name=args.name,
         client=args.client,
         start=args.start,
