@@ -109,6 +109,7 @@ class TestReport:
 
         service.assert_called_once()
         service().report.assert_called_with(
+            name=args.name,
             client=args.client,
             start=args.start,
             end=args.end,

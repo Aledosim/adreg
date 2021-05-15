@@ -28,6 +28,7 @@ def add(args):
 def report(args):
     service = AdService()
     service.report(
+        name=args.name,
         client=args.client,
         start=args.start,
         end=args.end,

@@ -33,6 +33,7 @@ def ad_dto(ad_input_dto):
 def report_input(mocker):
     report_input = mocker.Mock()
 
+    report_input.name = 'test name'
     report_input.client = 'test client'
     report_input.start = '5-4-2021'
     report_input.end = '7-5-2021'
