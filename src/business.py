@@ -1,9 +1,9 @@
-from src.data import Data
+from src.repositories.adrepository import AdRepository
 
 
 class AdReg:
     def __init__(self):
-        self.data = Data()
+        self.data = AdRepository()
 
     def create_adreg(self, ad_dto):
         ad_entry = self.data.get_or_create_ad(ad_dto)

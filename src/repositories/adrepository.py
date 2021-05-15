@@ -1,11 +1,9 @@
-from peewee import SqliteDatabase
-
 from src.database import database
 from src.models.ad import Ad
 from src.dto.ad_entry import AdEntryDTO
 
 
-class Data:
+class AdRepository:
 
     database = database
 

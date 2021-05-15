@@ -1,26 +1,24 @@
-import pytest
 from peewee import SqliteDatabase
 
 import src
 
-from src.data import Data
+from src.repositories.adrepository import AdRepository
 
 
 class TestData:
 
     def test_class_att_database(self):
-        assert isinstance(src.data.Data.database, SqliteDatabase)
+        assert isinstance(src.repositories.adrepository.AdRepository.database, SqliteDatabase)
 
     def test_get_or_create_ad(self, mocker, ad_input_dto):
-        mocker.patch('src.data.Data.database')
-        mocker.patch('src.data.Data.create_tables')
-        ad_entry_class =  mocker.patch('src.data.AdEntryDTO')
+        mocker.patch('src.repositories.adrepository.AdRepository.database')
+        ad_entry_class = mocker.patch('src.repositories.adrepository.AdEntryDTO')
 
-        ad_class = mocker.patch('src.data.Ad')
+        ad_class = mocker.patch('src.repositories.adrepository.Ad')
         ad = mocker.Mock()
         ad_class.get_or_create.return_value = ad, mocker.Mock()
 
-        data = Data()
+        data = AdRepository()
         result = data.get_or_create_ad.__wrapped__(data, ad_input_dto)
 
         ad_class.get_or_create.assert_called_once_with(
