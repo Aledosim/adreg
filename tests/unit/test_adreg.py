@@ -38,8 +38,8 @@ class TestMain:
         args.func.assert_called_once_with(args)
 
 
-class TestAdd:
-    def test_create_add_parser(self, mocker):
+class TestCreateAddSubparser:
+    def test_create_add_subparser(self, mocker):
         mock_parser = mocker.Mock()
         mock_parser.add_parser = mocker.Mock(return_value=mock_parser)
 
@@ -57,6 +57,27 @@ class TestAdd:
         assert '--end' in arg_list
         assert '--investment' in arg_list
 
+
+class TestCreateReportSubparser:
+
+    def test_create_report_parser(self, mocker):
+        mock_parser = mocker.Mock()
+        mock_parser.add_parser = mocker.Mock(return_value=mock_parser)
+
+        create_report_subparser(mock_parser)
+
+        mock_parser.add_parser.assert_called_once()
+        assert 'report' in mock_parser.add_parser.call_args[0]
+
+        # Assert the first argument of all add_argument calls
+        arg_list = [call[0][0] for call in mock_parser.add_argument.call_args_list]
+        assert 3 == len(arg_list)
+        assert '--client' in arg_list
+        assert '--start' in arg_list
+        assert '--end' in arg_list
+
+
+class TestAdd:
     def test_add_function_passes_correct_arguments(self, mocker):
         mocker.patch('adreg.AdService')
 
