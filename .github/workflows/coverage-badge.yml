@@ -13,6 +13,7 @@ jobs:
               run: |
                   apt update && apt install -y python3-pip
                   pip3 install -U coverage coverage-badge
+                  pip3 install -U pytest
             - name: Coverage Badge
               run: |
                   coverage run -m pytest
