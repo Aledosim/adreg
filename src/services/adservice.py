@@ -3,7 +3,7 @@ from datetime import datetime
 
 from src.dto.ad_input import AdInputDTO
 from src.dto.report_input import ReportInputDTO
-from src.business import AdReg
+from src.business.adbusiness import AdReg
 
 add_schema = Schema({
     'name': And(str, error='name must be str'),
