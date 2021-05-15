@@ -149,12 +149,14 @@ class TestReport:
 
         service = AdService()
         service.report(
+            name=report_input.name,
             client=report_input.client,
             start='5-4-2021',
             end='7-5-2021',
         )
 
         report_input_dto.assert_called_once_with(
+            name=report_input.name,
             client=report_input.client,
             start=date(2021, 4, 5),
             end=date(2021, 5, 7),
