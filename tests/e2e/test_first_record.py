@@ -2,7 +2,7 @@ import subprocess
 import pytest
 from src.database import models as db_models
 
-def test_first_record(mocker, get_models):
+def test_first_record(get_models):
     models = get_models(db_models)
 
     # Eli is a happy employee of Divulga Tudo
@@ -42,7 +42,7 @@ def test_first_record(mocker, get_models):
 
     # and it succeed
     assert result.returncode == 0
-    models['Ad'].get(name='especial de natal')
+    models['Ad'].get(name='especial de natal')  # throws AdDoesNotExist
 
     # Satisfied he reads the success output
     # assert result.stdout == 'success text'
