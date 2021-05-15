@@ -12,11 +12,11 @@ class TestAdReg:
 
         data_class.assert_called_once()
 
-    def test_create_adreg(self, mocker, ad_input_dto):
+    def test_create_adreg(self, mocker, ad_input):
         mocker.patch('src.business.AdRepository')
 
         adreg = AdReg()
-        result = adreg.create_adreg(ad_input_dto)
+        result = adreg.create_adreg(ad_input)
 
-        adreg.data.get_or_create_ad.assert_called_once_with(ad_input_dto)
+        adreg.data.get_or_create_ad.assert_called_once_with(ad_input)
         assert adreg.data.get_or_create_ad() == result

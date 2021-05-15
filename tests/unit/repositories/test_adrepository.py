@@ -10,7 +10,7 @@ class TestData:
     def test_class_att_database(self):
         assert isinstance(src.repositories.adrepository.AdRepository.database, SqliteDatabase)
 
-    def test_get_or_create_ad(self, mocker, ad_input_dto):
+    def test_get_or_create_ad(self, mocker, ad_input):
         mocker.patch('src.repositories.adrepository.AdRepository.database')
         ad_entry_class = mocker.patch('src.repositories.adrepository.AdEntryDTO')
 
@@ -19,14 +19,14 @@ class TestData:
         ad_class.get_or_create.return_value = ad, mocker.Mock()
 
         data = AdRepository()
-        result = data.get_or_create_ad.__wrapped__(data, ad_input_dto)
+        result = data.get_or_create_ad.__wrapped__(data, ad_input)
 
         ad_class.get_or_create.assert_called_once_with(
-            name=ad_input_dto.name,
-            client=ad_input_dto.client,
-            start=ad_input_dto.start,
-            end=ad_input_dto.end,
-            investment=ad_input_dto.investment
+            name=ad_input.name,
+            client=ad_input.client,
+            start=ad_input.start,
+            end=ad_input.end,
+            investment=ad_input.investment
         )
         ad_entry_class.from_model.assert_called_once_with(ad)
         assert ad_entry_class.from_model() == result
