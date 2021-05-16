@@ -115,10 +115,6 @@ To run the tests execute on the root directory:
 ```sh
 pytest
 ```
-## Future tasks
-- Implement config module (not fully done)
-- Make list and delete functionalities
-- Prettier output
 
 ## License
 
@@ -133,3 +129,8 @@ Project Link: [https://github.com/Aledosim/adreg](https://github.com/Aledosim/ad
 
 ## Acknowledgements
 This application is part of Capgemini Brasil's trainee selection program.
+
+### Future tasks
+- Implement config module (not fully done)
+- Make list and delete functionalities
+- Prettier output
