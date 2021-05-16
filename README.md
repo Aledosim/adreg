@@ -118,6 +118,7 @@ pytest
 ## Future tasks
 - Implement config module (not fully done)
 - Make list and delete functionalities
+- Prettier output
 
 ## License
 
