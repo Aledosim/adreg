@@ -43,10 +43,8 @@
 
 ## About The Project
 
-This program creates a database of advertisements that accepts the name of advertisement, the name of the client, the
-start and the end dates and the investment per day in BRL. The database relies on SQLite and the file is created on the
-root directory.
-You can create reports on each entry filtered by client and period of time.
+This program creates a database of advertisements that accepts the name of the advertisement, the name of the client, the
+start and the end dates and the investment per day in BRL. You can create reports on each entry filtered by client and period of time.
 
 ### Built With
 
@@ -60,7 +58,7 @@ You can create reports on each entry filtered by client and period of time.
 
 ### Prerequisites
 
-You will need [pip](https://pip.pypa.io/en/stable/installing/) to install the packages. It's **strongly recommended** that you use a [virtual environment](https://packaging.python.org/tutorials/installing-packages/#creating-and-using-virtual-environments).
+You will need [pip](https://pip.pypa.io/en/stable/installing/) to install the packages. It's **strongly recommended** that you use a [virtual environment](https://packaging.python.org/tutorials/installing-packages/#creating-and-using-virtual-environments). Developed in Python 3.7.3.
 
 ### Installation
 
@@ -69,17 +67,18 @@ You will need [pip](https://pip.pypa.io/en/stable/installing/) to install the pa
    git clone https://github.com/Aledosim/adreg.git
    ```
 2. Enter the directory
-	```sh
+   ```sh
    cd adreg
    ```
-3. Install the packages
+3. Install the packages **after activate the virtual environment**
    ```sh
    pip install -r requirements.txt
    ```
 
 ## Usage
 
-Run the adreg shell  script that lives in the root directory. **You can't run it out of this location** (it's in beta version yet). It will create the database file in this folder too.
+Run the adreg shell  script that lives in the root directory. **You can't run it out of this location** (it's in beta version yet). It will create the database file in root folder as well.
+
 ### Add entry
 At the root directory:
 ```sh
@@ -108,7 +107,7 @@ Being that:
 - CLIENT: the client name
 - START: starting date in the format dd-mm-yyyy
 - END: ending date in the format dd-mm-yyy
-On this command, END is defaults to the current day and can be omitted.
+On this command, END defaults to the current day and his value can be omitted.
 
 ### Getting help
 You can add the -h flag on the commands to see the informations.
@@ -127,7 +126,7 @@ Distributed under the GPL3 License. See `LICENSE` for more information.
 
 Alexandre do Sim - [LinkedIn](https://www.linkedin.com/in/alexandre-do-sim-86930414b/) - aledosim@yahoo.com.br
 
-Project Link: [https://github.com/Aledosim/adreg](https://github.com/Aledosim/adreg)
+Checkout my git projects: [https://github.com/Aledosim](https://github.com/Aledosim)
 
 
 ## Acknowledgements
