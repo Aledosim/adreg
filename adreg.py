@@ -10,6 +10,7 @@ log.debug('\nStarting script execution at {}'.format(datetime.datetime.now()))
 
 import argparse
 import sys
+from tabulate import tabulate
 
 from src.services.adservice import AdService
 
@@ -25,6 +26,20 @@ def add(args):
     )
 
 
+def format_report(report_line):
+    formated_report = {
+        'Name': report_line.name,
+        'Client': report_line.client,
+        'Start date': report_line.start.strftime('%d/%m/%Y'),
+        'End date': report_line.end.strftime('%d/%m/%Y'),
+        'Total invest': report_line.total / 100,
+        'Max views': report_line.max_views,
+        'Max clicks': report_line.max_clicks,
+        'Max shares': report_line.max_shares,
+    }
+    return formated_report
+
+
 def report(args):
     service = AdService()
     service.report(
@@ -33,6 +48,12 @@ def report(args):
         start=args.start,
         end=args.end,
     )
+    print_report(reports)
+
+
+def print_report(reports):
+    reports_formated = map(format_report, reports)
+    print(tabulate(reports_formated, headers='keys', floatfmt='.2f'))
 
 
 def create_add_subparser(subparsers):
