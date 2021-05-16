@@ -8,11 +8,11 @@ def test_client_report(apply_test_db):
     result = subprocess.run([
         './adreg', 'report',
         '--help'
-    ])
+    ], text=True, capture_output=True)
 
     assert result.returncode == 0
-    # with open() as help_report:
-    #     assert result.stdout == help_report.read()
+    with open('tests/outputs/report_help') as help_report:
+        assert result.stdout == help_report.read()
 
     # Just for curiosity, Eli requests all reports
     result = subprocess.run([

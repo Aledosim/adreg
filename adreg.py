@@ -13,6 +13,9 @@ import sys
 from tabulate import tabulate
 
 from src.services.adservice import AdService
+from src.outputs.add import add_description
+from src.outputs.main import main_description, main_epilog
+from src.outputs.report import report_description
 
 
 def add(args):
@@ -58,8 +61,9 @@ def print_report(reports):
 def create_add_subparser(subparsers):
     add_parser = subparsers.add_parser(
         'add',
-        description='add description',
-        help='add advertisement register',
+        description=add_description,
+        help='add advertisement entry',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
     add_parser.set_defaults(func=add)
@@ -82,13 +86,13 @@ def create_add_subparser(subparsers):
         const=datetime.date.today().strftime('%d-%m-%Y'),
         default=datetime.date.today().strftime('%d-%m-%Y'),
         type=str,
-        help='starting date of advertisement as DD-MM-YYYY',
+        help='starting date as DD-MM-YYYY (default: current day)',
     )
     add_parser.add_argument(
         '--end', '-e',
         type=str,
         required=True,
-        help='ending date of advertisement as DD-MM-YYYY',
+        help='ending date as DD-MM-YYYY',
     )
     add_parser.add_argument(
         '--investment', '-i',
@@ -101,8 +105,9 @@ def create_add_subparser(subparsers):
 def create_report_subparser(subparsers):
     report_parser = subparsers.add_parser(
         'report',
-        description='add description',
+        description=report_description,
         help='make a report filtered by client and/or days interval',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
     report_parser.set_defaults(func=report)
@@ -129,7 +134,10 @@ def create_report_subparser(subparsers):
 
 def main():
     argument_parser = argparse.ArgumentParser(
-        prog='adreg'
+        prog='adreg',
+        description=main_description,
+        epilog=main_epilog,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparsers = argument_parser.add_subparsers()
 

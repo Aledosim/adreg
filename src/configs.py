@@ -8,6 +8,7 @@ schema = Schema(
     }
 )
 
+
 def get_configs(config_path='.'):
     with open(config_path.joinpath('configs.yml')) as config_file:
         configs = full_load(config_file)

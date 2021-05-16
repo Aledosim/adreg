@@ -1,0 +1,17 @@
+usage: adreg add [-h] --name NAME --client CLIENT [--start [START]] --end END
+                 --investment INVESTMENT
+
+This command will register a entry of advertisement. NAME is the name of the advertisement, CLIENT is the client name,
+END is the ending date and INVESTMENT is the investment amount per day. START is the starting date which defaults to the
+current day, this parameter is optional.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --name NAME, -n NAME  name of the advertisement
+  --client CLIENT, -c CLIENT
+                        client name
+  --start [START], -s [START]
+                        starting date as DD-MM-YYYY (default: current day)
+  --end END, -e END     ending date as DD-MM-YYYY
+  --investment INVESTMENT, -i INVESTMENT
+                        investment per day in cents
