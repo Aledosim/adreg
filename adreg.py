@@ -42,8 +42,7 @@ def format_report(report_line):
 
 def report(args):
     service = AdService()
-    service.report(
-        name=args.name,
+    reports = service.report(
         client=args.client,
         start=args.start,
         end=args.end,
@@ -108,11 +107,6 @@ def create_report_subparser(subparsers):
 
     report_parser.set_defaults(func=report)
 
-    report_parser.add_argument(
-        '--name', '-n',
-        type=str,
-        help='name of the advertisement',
-    )
     report_parser.add_argument(
         '--client', '-c',
         type=str,
