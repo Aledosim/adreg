@@ -1,6 +1,6 @@
-from src.dto.report_input import ReportInputDTO
+from src.dto.ad_entry import AdEntryDTO
 
-class ReportDTO(ReportInputDTO):
+class ReportDTO(AdEntryDTO):
     def __init__(self, total=None, max_views=None, max_clicks=None, max_shares=None, **kwargs):
         super().__init__(**kwargs)
         self.total = total
