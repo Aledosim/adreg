@@ -88,6 +88,7 @@ Being that:
  - CLIENT: the client name
  - START: the starting date in the format dd-mm-yyyy
  - END: the ending date in the format dd-mm-yyy
+ - INVESTMENT: the investment per day
  
  The START parameter defaults to the current day, you can omit it.
 
@@ -105,6 +106,9 @@ Being that:
 - START: starting date in the format dd-mm-yyyy
 - END: ending date in the format dd-mm-yyy
 On this command, END is defaults to the current day and can be omitted.
+
+### Getting help
+You can add the -h flag on the commands to see the informations.
 
 ### Testing
 To run the tests execute on the root directory:
