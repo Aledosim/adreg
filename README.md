@@ -1,3 +1,6 @@
+[![Coverage][coverage-shield]][coverage-url]
+[![MIT License][license-shield]][license-url]
+
 <br />
 <p align="center">
 
@@ -134,3 +137,9 @@ This application is part of Capgemini Brasil's trainee selection program.
 - Implement config module (not fully done)
 - Make list and delete functionalities
 - Prettier output
+
+
+[license-shield]: https://img.shields.io/badge/license-GPL3-green
+[license-url]: https://github.com/Aledosim/adreg/blob/coverage-badge/LICENSE
+[coverage-shield]: https://raw.githubusercontent.com/Aledosim/adreg/4ad3718d47eb32df7cd791250f90fc35d0e1ce3d/.github/coverage.svg
+[coverage-url]: https://github.com/Aledosim/adreg/blob/coverage-badge/.github/coverage.txt
