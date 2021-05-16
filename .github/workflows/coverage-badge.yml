@@ -12,19 +12,14 @@ jobs:
             - name: Pip Installer
               uses: BSFishy/pip-action@v1
               with:
+                requirements: requirements.txt
                 packages: |
-                    coverage
+                    pytest-cov
                     coverage-badge
-                    peewee
-                    pytest
-                    pytest-mock
-                    PyYAML
-                    schema
-                    dict-to-object
                     
             - name: Coverage Badge
               run: |
-                  coverage run -m pytest
+                  pytest --cov=adreg --cov=src tests/
                   coverage-badge -f -o ".github/coverage.svg"
                   
             - name: Verify Changed files
