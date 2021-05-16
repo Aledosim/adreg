@@ -9,14 +9,20 @@ class ReportDTO(AdEntryDTO):
         self.max_shares = max_shares
 
     @staticmethod
-    def from_model(model):
+    def from_ad_entry(ad_entry, total=None, max_views=None, max_clicks=None, max_shares=None):
         report_dto = ReportDTO(
-            client=model.client,
-            start=model.start,
-            end=model.end,
-            total=model.total,
-            max_views=model.max_views,
-            max_clicks=model.max_clicks,
-            max_shares=model.max_shares,
+            name=ad_entry.name,
+            client=ad_entry.client,
+            start=ad_entry.start,
+            end=ad_entry.end,
+            investment=ad_entry.investment,
+            created_at=ad_entry.created_at,
+            updated_at=ad_entry.updated_at,
+            id=ad_entry.id,
+            total=total,
+            max_views=max_views,
+            max_clicks=max_clicks,
+            max_shares=max_shares,
         )
+
         return report_dto
