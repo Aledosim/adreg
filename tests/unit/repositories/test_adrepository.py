@@ -1,5 +1,5 @@
+import pytest
 from peewee import SqliteDatabase
-
 import src
 
 from src.repositories.adrepository import AdRepository
@@ -42,8 +42,10 @@ class TestData:
 
         ad_class.select.assert_called_once_with()
 
+        # Map Ad instances to AdEntryDTO
         from_model_calls_args = [call[0][0] for call in ad_entry_class.from_model.call_args_list]
         for m in query_result:
             assert m in from_model_calls_args
 
+        # Return AdEntryDTO list
         assert result == [ad_entry_class.from_model() for i in range(5)]
