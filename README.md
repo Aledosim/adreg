@@ -140,6 +140,6 @@ This application is part of Capgemini Brasil's trainee selection program.
 
 
 [license-shield]: https://img.shields.io/badge/license-GPL3-green
-[license-url]: https://github.com/Aledosim/adreg/blob/coverage-badge/LICENSE
-[coverage-shield]: https://raw.githubusercontent.com/Aledosim/adreg/4ad3718d47eb32df7cd791250f90fc35d0e1ce3d/.github/coverage.svg
-[coverage-url]: https://github.com/Aledosim/adreg/blob/coverage-badge/.github/coverage.txt
+[license-url]: https://raw.githubusercontent.com/Aledosim/adreg/master/LICENSE
+[coverage-shield]: https://raw.githubusercontent.com/Aledosim/adreg/master/.github/coverage.svg
+[coverage-url]: https://raw.githubusercontent.com/Aledosim/adreg/master/.github/coverage.txt
