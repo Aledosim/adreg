@@ -19,7 +19,7 @@ jobs:
                     
             - name: Coverage Badge
               run: |
-                  pytest --cov=adreg --cov=src tests/
+                  pytest --cov=adreg --cov=src tests/ >> .github/coverage.txt
                   coverage-badge -f -o ".github/coverage.svg"
                   
             - name: Verify Changed files
