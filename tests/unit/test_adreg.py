@@ -94,7 +94,7 @@ class TestAdd:
             client=args.client,
             start=args.start,
             end=args.end,
-            investment=args.investment,
+            investment=args.investment * 100,
         )
 
 

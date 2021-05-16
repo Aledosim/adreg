@@ -19,7 +19,7 @@ def add(args):
         client=args.client,
         start=args.start,
         end=args.end,
-        investment=args.investment,
+        investment=int(args.investment * 100),
     )
 
 
@@ -90,7 +90,7 @@ def create_add_subparser(subparsers):
     )
     add_parser.add_argument(
         '--investment', '-i',
-        type=int,
+        type=float,
         required=True,
         help='investment per day in cents',
     )

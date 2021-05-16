@@ -23,7 +23,7 @@ def test_first_record(get_models):
         '-c', 'porta dos fundos',
         '-i', '1-12-2020',
         '-e', '25-12-2020',
-        '-i', '20000'
+        '-i', '200.00'
     ], text=True, capture_output=True)
 
     assert result.returncode == 2
@@ -38,7 +38,7 @@ def test_first_record(get_models):
         '-c', 'porta dos fundos',
         '-s', '1-12-2020',
         '-e', '25-12-2020',
-        '-i', '20000'
+        '-i', '200.00'
     ])
 
     # and it succeed
