@@ -1,7 +1,7 @@
 import pytest
 import subprocess
 
-# @pytest.mark.only
+
 def test_client_report(apply_test_db):
     # Eli have a new task, to make a report on advertises
     # First he reads the help text
@@ -17,8 +17,6 @@ def test_client_report(apply_test_db):
     # Just for curiosity, Eli requests all reports
     result = subprocess.run([
         './adreg', 'report',
-        '--start', '30-11-2020',
-        '--client', 'porta dos fundos'
     ])
 
     assert result.returncode == 0
@@ -27,7 +25,6 @@ def test_client_report(apply_test_db):
     # ... all reports of Porta dos Fundos
     result = subprocess.run([
         './adreg', 'report',
-        '--start', '30-11-2020',
         '--client', 'porta dos fundos'
     ])
 
@@ -47,6 +44,7 @@ def test_client_report(apply_test_db):
     # But he really wants Rocketseat late april results
     result = subprocess.run([
         './adreg', 'report',
+        '--client', 'rocketseat',
         '--start', '15-4-2021',
         '--end', '30-4-2021'
     ])

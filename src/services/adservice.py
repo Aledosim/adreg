@@ -1,4 +1,4 @@
-from schema import Schema, Regex, And
+from schema import Schema, Regex, And, Or, Use
 from datetime import datetime
 
 from src.dto.ad_input import AdInputDTO
