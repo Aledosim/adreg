@@ -49,8 +49,8 @@ def report_input_dto(report_input):
     return report_input_dto
 
 @pytest.fixture
-def report_dto(report_input_dto):
-    report_dto = report_input_dto
+def report_dto(ad_entry_dto):
+    report_dto = ad_entry_dto
     report_dto.total = 16000
     report_dto.max_views = 500
     report_dto.max_clicks = 30
