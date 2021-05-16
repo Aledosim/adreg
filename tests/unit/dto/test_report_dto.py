@@ -5,6 +5,7 @@ class TestReportDTO:
     def test_init(self, report_dto):
 
         report_dto_obj = ReportDTO(
+            name=report_dto.name,
             client=report_dto.client,
             start=report_dto.start,
             end=report_dto.end,
@@ -14,6 +15,7 @@ class TestReportDTO:
             max_shares=report_dto.max_shares,
         )
 
+        assert report_dto_obj.name == report_dto.name
         assert report_dto_obj.client == report_dto.client
         assert report_dto_obj.start == report_dto.start
         assert report_dto_obj.end == report_dto.end
@@ -22,7 +24,6 @@ class TestReportDTO:
         assert report_dto_obj.max_clicks == report_dto.max_clicks
         assert report_dto_obj.max_shares == report_dto.max_shares
 
-    @pytest.mark.only
     def test_from_ad_entry(self, ad_entry_dto, report_dto):
         report_dto_obj = ReportDTO.from_ad_entry(
             ad_entry_dto,
