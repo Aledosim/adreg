@@ -23,6 +23,25 @@ add_schema = Schema({
 })
 
 
+report_schema = Schema({
+    'client': Or(str, None),
+    'start': Or(
+        And(
+            And(str, error='start date must be str'),
+            And(lambda x: datetime.strptime(x, '%d-%m-%Y'), error='start date must be in the format dd-mm-yyyy')
+        ),
+        None
+    ),
+    'end': Or(
+        And(
+            And(str, error='end date must be str'),
+            And(lambda x: datetime.strptime(x, '%d-%m-%Y'), error='end date must be in the format dd-mm-yyyy')
+        ),
+        None
+    ),
+})
+
+
 class AdService:
     def __init__(self):
         self.adreg = AdReg()
