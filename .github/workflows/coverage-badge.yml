@@ -14,11 +14,12 @@ jobs:
               with:
                 requirements: requirements.txt
                 packages: |
-                    coverage
+                    pytest-cov
                     coverage-badge
                     
             - name: Coverage Badge
               run: |
+                  pytest --cov=adreg --cov=src tests/
                   coverage-badge -f -o ".github/coverage.svg"
                   
             - name: Verify Changed files
