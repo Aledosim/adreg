@@ -10,11 +10,11 @@ add_schema = Schema({
     'client': And(str, error='client must be str'),
     'start': And(
         And(str, error='start date must be str'),
-        Regex(r'[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}', error='start date must be in the format dd-mm-yyyy')
+        And(lambda x: datetime.strptime(x, '%d-%m-%Y'), error='start date must be in the format dd-mm-yyyy')
     ),
     'end': And(
         And(str, error='end date must be str'),
-        Regex(r'[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}', error='end date must be in the format dd-mm-yyyy')
+        And(lambda x: datetime.strptime(x, '%d-%m-%Y'), error='end date must be in the format dd-mm-yyyy')
     ),
     'investment': And(
         And(int, error='investment must be int'),
