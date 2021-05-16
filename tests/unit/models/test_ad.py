@@ -3,6 +3,7 @@ from src.models.base import BaseModel
 
 from src.models.ad import Ad
 
+
 def test_ad_attributes(mocker):
     mocker.patch('src.models.ad.CharField')
     mocker.patch('src.models.ad.DateField')

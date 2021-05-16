@@ -93,7 +93,6 @@ class AdReg:
 
     def create_report(self, report_input_dto):
 
-
         # Filtered by client
         if report_input_dto.client is not None and report_input_dto.start is None:
             ads = self.data.find_ads_by_client(report_input_dto)

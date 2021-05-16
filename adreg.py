@@ -1,15 +1,9 @@
 """
-This layer comunicates with the user
+This layer communicates with the user
 """
-
-import logging
-log = logging.getLogger()
-
-import datetime
-log.debug('\nStarting script execution at {}'.format(datetime.datetime.now()))
-
 import argparse
 import sys
+import datetime
 from tabulate import tabulate
 
 from src.services.adservice import AdService
@@ -30,7 +24,7 @@ def add(args):
 
 
 def format_report(report_line):
-    formated_report = {
+    formatted_report = {
         'Name': report_line.name,
         'Client': report_line.client,
         'Start date': report_line.start.strftime('%d/%m/%Y'),
@@ -40,7 +34,7 @@ def format_report(report_line):
         'Max clicks': report_line.max_clicks,
         'Max shares': report_line.max_shares,
     }
-    return formated_report
+    return formatted_report
 
 
 def report(args):
@@ -54,8 +48,8 @@ def report(args):
 
 
 def print_report(reports):
-    reports_formated = map(format_report, reports)
-    print(tabulate(reports_formated, headers='keys', floatfmt='.2f'))
+    reports_formatted = map(format_report, reports)
+    print(tabulate(reports_formatted, headers='keys', floatfmt='.2f'))
 
 
 def create_add_subparser(subparsers):
@@ -151,7 +145,6 @@ def main():
         argument_parser.print_help()
         sys.exit()
 
-    log.debug('args: {}'.format(args))
     args.func(args)
 
 

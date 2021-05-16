@@ -1,6 +1,7 @@
 from datetime import date, datetime
 import pytest
 
+
 @pytest.fixture
 def ad_input(mocker):
     ad_dto = mocker.Mock()
@@ -13,6 +14,7 @@ def ad_input(mocker):
 
     return ad_dto
 
+
 @pytest.fixture
 def ad_input_dto(ad_input):
     ad_input_dto = ad_input
@@ -21,6 +23,7 @@ def ad_input_dto(ad_input):
 
     return ad_input_dto
 
+
 @pytest.fixture
 def ad_entry_dto(ad_input_dto):
     ad_dto = ad_input_dto
@@ -28,6 +31,7 @@ def ad_entry_dto(ad_input_dto):
     ad_dto.updated_at = datetime.now()
 
     return ad_dto
+
 
 @pytest.fixture
 def report_input(mocker):
@@ -39,6 +43,7 @@ def report_input(mocker):
 
     return report_input
 
+
 @pytest.fixture
 def report_input_dto(report_input):
     report_input_dto = report_input
@@ -46,6 +51,7 @@ def report_input_dto(report_input):
     report_input_dto.end = date(2021, 5, 7)
 
     return report_input_dto
+
 
 @pytest.fixture
 def report_dto(ad_entry_dto):

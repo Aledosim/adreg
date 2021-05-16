@@ -1,9 +1,8 @@
-import pytest
 from peewee import Model
-import os
 import src
 
 from src.models.base import BaseModel
+
 
 class TestBaseModel:
 

@@ -1,5 +1,5 @@
-import pytest
 from src.dto.report import ReportDTO
+
 
 class TestReportDTO:
     def test_init(self, report_dto):
@@ -47,5 +47,3 @@ class TestReportDTO:
         assert report_dto_obj.max_views == report_dto.max_views
         assert report_dto_obj.max_clicks == report_dto.max_clicks
         assert report_dto_obj.max_shares == report_dto.max_shares
-
-

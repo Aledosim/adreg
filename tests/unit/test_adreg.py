@@ -1,4 +1,3 @@
-import pytest
 import argparse
 import sys
 
@@ -133,4 +132,3 @@ class TestPrintReport:
         adreg.map.assert_called_once_with(adreg.format_report, reports)
 
         tabulate_mock.assert_called_once()
-

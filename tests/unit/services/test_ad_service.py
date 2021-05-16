@@ -60,7 +60,7 @@ class TestAdAdd:
 
         assert 'client must be str' in [err for err in exception.value.errors]
 
-    def test_start_is_formated_str(self, ad_input):
+    def test_start_is_formatted_str(self, ad_input):
         service = AdService()
 
         with pytest.raises(SchemaError) as exception:

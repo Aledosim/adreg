@@ -4,6 +4,7 @@ import os
 import shutil
 from pathlib import Path
 
+
 @pytest.fixture()
 def get_models():
     def inner(models_list):
@@ -12,6 +13,7 @@ def get_models():
         return dict([(model.__name__, model) for model in models_list])
 
     return inner
+
 
 @pytest.fixture()
 def apply_test_db():

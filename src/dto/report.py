@@ -1,5 +1,6 @@
 from src.dto.ad_entry import AdEntryDTO
 
+
 class ReportDTO(AdEntryDTO):
     def __init__(self, total=None, max_views=None, max_clicks=None, max_shares=None, **kwargs):
         super().__init__(**kwargs)

@@ -1,4 +1,3 @@
-import pytest
 from peewee import SqliteDatabase
 import src
 
@@ -72,9 +71,8 @@ class TestData:
 
     def test_find_ads_by_period(self, mocker, report_input_dto):
         select_spy = mocker.spy(src.repositories.adrepository.Ad, 'select')
-        ad_entry_class = mocker.patch('src.repositories.adrepository.AdEntryDTO')
 
         data = AdRepository()
-        result = data.find_ads_by_period.__wrapped__(data, report_input_dto)
+        data.find_ads_by_period.__wrapped__(data, report_input_dto)
 
         select_spy.assert_called_once()

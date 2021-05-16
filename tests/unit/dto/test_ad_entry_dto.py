@@ -1,5 +1,4 @@
 from datetime import date, datetime
-import pytest
 
 from src.dto.ad_entry import AdEntryDTO
 
@@ -28,7 +27,7 @@ class TestAdEntry:
 
         assert name == ad_entry_dto.name
         assert client == ad_entry_dto.client
-        assert start ==  ad_entry_dto.start
+        assert start == ad_entry_dto.start
         assert end == ad_entry_dto.end
         assert investment == ad_entry_dto.investment
         assert created_at == ad_entry_dto.created_at
@@ -60,7 +59,7 @@ class TestAdEntry:
         assert isinstance(ad_entry_dto, AdEntryDTO)
         assert name == ad_entry_dto.name
         assert client == ad_entry_dto.client
-        assert start ==  ad_entry_dto.start
+        assert start == ad_entry_dto.start
         assert end == ad_entry_dto.end
         assert investment == ad_entry_dto.investment
         assert created_at == ad_entry_dto.created_at

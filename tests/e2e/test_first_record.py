@@ -1,5 +1,4 @@
 import subprocess
-import pytest
 from src.database import models as db_models
 
 

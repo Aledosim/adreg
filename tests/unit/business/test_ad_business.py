@@ -1,4 +1,3 @@
-import pytest
 import src
 
 from src.business.adbusiness import AdReg, calculate_total
