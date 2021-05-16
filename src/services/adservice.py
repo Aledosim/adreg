@@ -46,7 +46,7 @@ class AdService:
 
         self.adreg.create_adentry(ad_input_dto)
 
-    def report(self, name=None, client= None, start=None, end=None):
+    def report(self, name=None, client=None, start=None, end=None):
         report_input_dto = ReportInputDTO(
             name=name,
             client=client,
@@ -54,4 +54,6 @@ class AdService:
             end=datetime.strptime(end, '%d-%m-%Y').date(),
         )
 
-        self.adreg.create_report(report_input_dto)
+        reports = self.adreg.create_report(report_input_dto)
+
+        return reports

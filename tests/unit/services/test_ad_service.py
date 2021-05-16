@@ -143,12 +143,15 @@ class TestAdAdd:
 
 
 class TestReport:
-    def test_passes_correct_values(self, report_input, mocker):
-        adreg_mock = mocker.patch('src.services.adservice.AdReg')
+    def test_report_service(self, report_input, report_dto, mocker):
         report_input_dto = mocker.patch('src.services.adservice.ReportInputDTO')
 
+        adreg_mock = mocker.patch('src.services.adservice.AdReg')
+        reports = [report_dto for i in range(5)]
+        adreg_mock().create_report.return_value = reports
+
         service = AdService()
-        service.report(
+        result = service.report(
             name=report_input.name,
             client=report_input.client,
             start='5-4-2021',
@@ -163,3 +166,4 @@ class TestReport:
         )
 
         adreg_mock().create_report.assert_called_once_with(report_input_dto())
+        assert result == reports
