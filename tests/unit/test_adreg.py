@@ -4,7 +4,7 @@ import sys
 
 import adreg
 
-from adreg import main, add, report, create_add_subparser, create_report_subparser
+from adreg import main, add, report, create_add_subparser, create_report_subparser, print_report
 
 
 class TestMain:
@@ -76,8 +76,7 @@ class TestCreateReportSubparser:
 
         # Assert the first argument of all add_argument calls
         arg_list = [call[0][0] for call in mock_parser.add_argument.call_args_list]
-        assert 4 == len(arg_list)
-        assert '--name' in arg_list
+        assert 3 == len(arg_list)
         assert '--client' in arg_list
         assert '--start' in arg_list
         assert '--end' in arg_list
@@ -101,16 +100,37 @@ class TestAdd:
 
 
 class TestReport:
-    def test_report_function_passes_correct_arguments(self, report_input, mocker):
+    def test_report_function(self, report_input, report_dto, mocker):
+        mocker.patch('adreg.print_report')
         service = mocker.patch('adreg.AdService')
-        args = report_input
 
+        report_list = [report_dto for i in range(5)]
+        service.return_value.report.return_value = report_list
+
+        args = report_input
         report(args)
 
         service.assert_called_once()
         service().report.assert_called_with(
-            name=args.name,
             client=args.client,
             start=args.start,
             end=args.end,
         )
+
+        adreg.print_report.assert_called_once_with(report_list)
+
+
+class TestPrintReport:
+    def test_print_report(self, report_dto, mocker):
+        mocker.patch('adreg.format_report')
+        mocker.patch('adreg.map')
+        tabulate_mock = mocker.patch('adreg.tabulate')
+
+        reports = [report_dto for i in range(5)]
+
+        print_report(reports)
+
+        adreg.map.assert_called_once_with(adreg.format_report, reports)
+
+        tabulate_mock.assert_called_once()
+
