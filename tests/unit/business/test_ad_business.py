@@ -99,6 +99,40 @@ class TestAdReg:
 
         adreg.data.find_ads_by_period.assert_called_once_with(report_input_dto)
 
+        # calculate total per entry
+        calculate_total_calls_args = [call[0][0] for call in calculate_total_mock.call_args_list]
+        for m in entries:
+            assert m in calculate_total_calls_args
+
+        # Return list of ReportDTO
+        assert result == [report_dto_mock.from_ad_entry() for i in range(5)]
+
+    def test_create_client_and_period_report(self, mocker, ad_entry_dto, report_input_dto):
+        ad_repository_mock = mocker.patch('src.business.adbusiness.AdRepository')
+        report_dto_mock = mocker.patch('src.business.adbusiness.ReportDTO')
+        calculate_total_mock = mocker.patch('src.business.adbusiness.calculate_total')
+        calculate_total_mock.return_value = 16000, 11200, 1344, 192,
+
+        entries = [ad_entry_dto for i in range(5)]
+        ad_repository_mock().find_ads_by_client_and_period.return_value = entries
+
+        adreg = AdReg()
+        result = adreg.create_report(report_input_dto)
+
+        adreg.data.find_all_ads.assert_not_called()
+        adreg.data.find_ads_by_client.assert_not_called()
+        adreg.data.find_ads_by_period.assert_not_called()
+
+        adreg.data.find_ads_by_client_and_period.assert_called_with(report_input_dto)
+
+        # calculate total per entry
+        calculate_total_calls_args = [call[0][0] for call in calculate_total_mock.call_args_list]
+        for m in entries:
+            assert m in calculate_total_calls_args
+
+        # Return list of ReportDTO
+        assert result == [report_dto_mock.from_ad_entry() for i in range(5)]
+
 
 class TestCalculateTotal:
     def test_calculate_total(self, ad_entry_dto, mocker):
