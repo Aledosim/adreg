@@ -115,6 +115,9 @@ To run the tests execute on the root directory:
 ```sh
 pytest
 ```
+## Future tasks
+- Implement config module (not fully done)
+- Make list and delete functionalities
 
 ## License
 
@@ -122,7 +125,7 @@ Distributed under the GPL3 License. See `LICENSE` for more information.
 
 ## Contact
 
-Alexandre do Sim - [@twitter_handle](https://twitter.com/twitter_handle) - aledosim@yahoo.com.br
+Alexandre do Sim - [LinkedIn](https://www.linkedin.com/in/alexandre-do-sim-86930414b/) - aledosim@yahoo.com.br
 
 Project Link: [https://github.com/Aledosim/adreg](https://github.com/Aledosim/adreg)
 
