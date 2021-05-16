@@ -2,6 +2,7 @@ import subprocess
 import pytest
 from src.database import models as db_models
 
+
 def test_first_record(get_models):
     models = get_models(db_models)
 
@@ -9,7 +10,7 @@ def test_first_record(get_models):
     # He wants to use the brand new system of advertisement registry
 
     # First he tries to run the command only
-    result = subprocess.run(['./adreg'], capture_output=True )
+    result = subprocess.run(['./adreg'])
 
     assert result.returncode == 0
     # He reads the help information
