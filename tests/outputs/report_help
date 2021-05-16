@@ -1,0 +1,15 @@
+usage: adreg report [-h] [--client CLIENT] [--start START] [--end [END]]
+
+This command will print the report of AdReg. It reads the file at the root directory of the application. You can filter
+the report on client name or period of time.
+All parameters are filters. CLIENT is the name of the client, START is the starting date of the report and END is the
+ending date. END defaults to the current day, so you can use it without supply the value.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --client CLIENT, -c CLIENT
+                        name of the client
+  --start START, -s START
+                        start date of report
+  --end [END], -e [END]
+                        end date of report. Default is the current day

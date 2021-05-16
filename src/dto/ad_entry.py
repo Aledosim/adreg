@@ -1,5 +1,6 @@
 from src.dto.ad_input import AdInputDTO
 
+
 class AdEntryDTO(AdInputDTO):
     def __init__(self, created_at=None, updated_at=None, id=None, **kwargs):
         super().__init__(**kwargs)
@@ -15,9 +16,9 @@ class AdEntryDTO(AdInputDTO):
             start=model.start,
             end=model.end,
             investment=model.investment,
-            created_at = model.created_at,
-            updated_at = model.updated_at,
-            id = model.id
+            created_at=model.created_at,
+            updated_at=model.updated_at,
+            id=model.id
         )
 
         return ad_entry_dto

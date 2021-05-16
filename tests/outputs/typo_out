@@ -1,0 +1,3 @@
+usage: adreg add [-h] --name NAME --client CLIENT [--start [START]] --end END
+                 --investment INVESTMENT
+adreg add: error: argument --investment/-i: invalid float value: '1-12-2020'

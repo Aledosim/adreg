@@ -26,4 +26,3 @@ class TestConfig:
 
         with pytest.raises(SchemaError):
             get_configs(tmp_path)
-

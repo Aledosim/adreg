@@ -21,6 +21,6 @@ class TestAd:
 
         assert name == ad_dto.name
         assert client == ad_dto.client
-        assert start ==  ad_dto.start
+        assert start == ad_dto.start
         assert end == ad_dto.end
         assert investment == ad_dto.investment

@@ -18,3 +18,39 @@ class AdRepository:
         )
         ad_entry = AdEntryDTO.from_model(ad)
         return ad_entry
+
+    @database.connection_context()
+    def find_all_ads(self):
+        ads = Ad.select()
+
+        ad_entries = [AdEntryDTO.from_model(ad) for ad in ads]
+
+        return ad_entries
+
+    @database.connection_context()
+    def find_ads_by_client(self, report_input_dto):
+        ads = Ad.select().where(Ad.client == report_input_dto.client)
+
+        ad_entries = [AdEntryDTO.from_model(ad) for ad in ads]
+
+        return ad_entries
+
+    @database.connection_context()
+    def find_ads_by_period(self, report_input_dto):
+        ads = Ad.select().where((Ad.end >= report_input_dto.start) & (Ad.start <= report_input_dto.end))
+
+        ad_entries = [AdEntryDTO.from_model(ad) for ad in ads]
+
+        return ad_entries
+
+    @database.connection_context()
+    def find_ads_by_client_and_period(self, report_input_dto):
+        ads = Ad.select().where(
+            (Ad.end >= report_input_dto.start)
+            & (Ad.start <= report_input_dto.end)
+            & (Ad.client == report_input_dto.client)
+        )
+
+        ad_entries = [AdEntryDTO.from_model(ad) for ad in ads]
+
+        return ad_entries
