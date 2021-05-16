@@ -65,13 +65,33 @@ class AdService:
 
         self.adreg.create_adentry(ad_input_dto)
 
-    def report(self, name=None, client=None, start=None, end=None):
-        report_input_dto = ReportInputDTO(
-            name=name,
-            client=client,
-            start=datetime.strptime(start, '%d-%m-%Y').date(),
-            end=datetime.strptime(end, '%d-%m-%Y').date(),
-        )
+    def report(self, client=None, start=None, end=None):
+        report_schema.validate({
+            'client': client,
+            'start': start,
+            'end': end,
+        })
+
+        if start is None and end is None:
+            report_input_dto = ReportInputDTO(
+                client=client,
+            )
+        elif start is None and end is not None:
+            report_input_dto = ReportInputDTO(
+                client=client,
+                end=datetime.strptime(end, '%d-%m-%Y').date(),
+            )
+        elif start is not None and end is None:
+            report_input_dto = ReportInputDTO(
+                client=client,
+                start=datetime.strptime(start, '%d-%m-%Y').date(),
+            )
+        else:
+            report_input_dto = ReportInputDTO(
+                client=client,
+                start=datetime.strptime(start, '%d-%m-%Y').date(),
+                end=datetime.strptime(end, '%d-%m-%Y').date(),
+            )
 
         reports = self.adreg.create_report(report_input_dto)
 
