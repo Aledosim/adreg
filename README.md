@@ -1,5 +1,5 @@
 [![Coverage][coverage-shield]][coverage-url]
-[![MIT License][license-shield]][license-url]
+[![GPL3 License][license-shield]][license-url]
 
 <br />
 <p align="center">
